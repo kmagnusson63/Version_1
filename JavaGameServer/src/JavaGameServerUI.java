@@ -1,5 +1,8 @@
 
 import java.awt.Color;
+import java.io.BufferedOutputStream;
+import java.net.Socket;
+import java.util.Scanner;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -12,7 +15,12 @@ import java.awt.Color;
  * @author Dad
  */
 public class JavaGameServerUI extends javax.swing.JFrame {
-
+    
+    private Scanner fromClient;
+    private BufferedOutputStream toClient;
+    private Socket socket;
+    private static final int TEXT = 1, BINARY = 2, CLOSE = 8, PING = 9, PONG = 10;
+    
     /**
      * Creates new form JavaGameServerUI
      */
@@ -281,6 +289,10 @@ public class JavaGameServerUI extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(() -> {
             new JavaGameServerUI().setVisible(true);
         });
+        
+        /* 
+            Start socket server
+        */
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
